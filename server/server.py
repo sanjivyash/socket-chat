@@ -14,6 +14,7 @@ load_dotenv(PATH)
 HOST = socket.gethostbyname(os.getenv('HOST'))
 PORT = int(os.getenv('PORT'))
 HEADER = int(os.getenv('HEADER'))
+CLIENT_LIMIT = int(os.getenv('CLIENT_LIMIT'))
 
 SIZE = len(pickle.dumps(f'{0:0{HEADER}d}'))
 BUFFER = int(math.pow(2, math.ceil(math.log(SIZE, 2)))) # smallest power of 2 >= SIZE
@@ -30,7 +31,7 @@ def server_connect():
 		server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 		
 		server.bind((HOST, PORT))
-		server.listen(5)
+		server.listen(CLIENT_LIMIT)
 		print(f'Listening on {HOST}:{PORT}')
 
 		return server 

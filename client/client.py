@@ -58,7 +58,7 @@ def recieve_messages(client, username):
 
 
 def main():
-	username = input()
+	username = input('Enter your username: ')
 	client = client_connect(username)
 	thread = Thread(target=recieve_messages, args=(client, username), daemon=True)
 	thread.start()	
