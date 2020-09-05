@@ -60,7 +60,7 @@ class Client:
 			header = f'{len(msg):0{HEADER}d}'
 
 			self.client.send(pickle.dumps(header))
-			time.sleep(0.1)
+			time.sleep(0.01)
 			self.client.send(msg)
 
 			if message == '[quit]':
