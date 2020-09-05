@@ -6,7 +6,7 @@ import pickle
 from threading import Thread
 from dotenv import load_dotenv
 
-# loading the global variables
+# GLOBAL CONSTANTS
 PATH = os.path.join(os.path.dirname(__file__), '..', 'config', '.env')
 load_dotenv(PATH)
 
@@ -18,8 +18,8 @@ SIZE = len(pickle.dumps(f'{0:0{HEADER}d}'))
 BUFFER = int(math.pow(2, math.ceil(math.log(SIZE, 2)))) # smallest power of 2 >= SIZE
 
 
+# try the socket connection
 def client_connect(username):
-	# try the socket connection
 	try:
 		client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 		client.connect((HOST, PORT))
@@ -31,6 +31,7 @@ def client_connect(username):
 		print(f'[ERROR] {e}')
 
 
+# receive messages from server
 def recieve_messages(client, username):
 	new_msg = True
 	header = 0
